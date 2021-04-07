@@ -6,7 +6,7 @@ import PerHouse from "./components/PerHouse";
 import axios from 'axios'
 
 // const CONNECTION_PORT = process.env.PORT || 'localhost:8080/'
-let socket = io()
+let socket = io('https://budget-real-time.herokuapp.com')
 
 function App() {
     const [showSpecifics, setShowSpecifics] = useState(true)

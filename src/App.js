@@ -5,8 +5,8 @@ import WasteoMeter from "./components/WasteoMeter";
 import PerHouse from "./components/PerHouse";
 import axios from 'axios'
 
-const CONNECTION_PORT = 'localhost:8080/'
-let socket = io(CONNECTION_PORT)
+// const CONNECTION_PORT = process.env.PORT || 'localhost:8080/'
+let socket = io()
 
 function App() {
     const [showSpecifics, setShowSpecifics] = useState(true)
@@ -16,7 +16,7 @@ function App() {
     const [totalAmount, setTotalAmount] = useState([])
 
     const programs = async () => {
-        let data = await axios.get(`http://localhost:8080/program`)
+        let data = await axios.get(`https://budget-real-time.herokuapp.com/program`)
         return data
     }
 

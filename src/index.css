@@ -1,38 +1,114 @@
 h1 {
+  font-family: 'Abril Fatface', cursive;
   padding: 1rem 0;
   text-align: center;
   letter-spacing: 1px;
 }
 p{
+  font-family: 'Abril Fatface', cursive;
   text-align: center;
 }
 h2 {
+  font-family: 'Abril Fatface', cursive;
  text-align: center;
 }
 header {
-  padding: 3rem 0;
+  font-family: 'Abril Fatface', cursive;
+  background:  #31445e;
+   /*padding: 3rem 0;*/
   text-align: center;
 }
 
 .container {
   text-align: center;
-  width:50%;
-  padding: 3rem !important;
+  padding: 2rem !important;
   margin: 3rem 3rem ;
-  background-color: white;
+  background-color: #ffffff;
   box-shadow: -15px 15px lightslategray;
-
+  width:600px;
 }
+
 .containerText {
   text-align: center;
-  width:100%;
-  padding-bottom: 3rem;
-  margin: 3rem 3rem ;
-  background-color: white;
+  /*padding: 2rem !important;*/
+  margin: 1rem 1rem ;
+  align-items: center;
+
+}
+.containerAlt{
+  font-family: 'Abril Fatface', cursive;
+  text-align: center;
+  padding: 15px 15px !important;
+  margin: 1rem 1rem ;
+  align-items: center;
+  width:600px;
+  background-color: #ffffff;
   box-shadow: -15px 15px lightslategray;
 }
+
 .footer {
 
   background-color: white;
   text-align: center;
+}
+.app{
+  font-family: 'Abril Fatface', cursive;
+  background-image: url(./assets/bgk.png);
+  background-size: cover;
+  background-position: center;
+  background-color: #687689;
+  background-repeat: no-repeat;
+}
+.cantidad1{
+  font-family: 'Abril Fatface', cursive;
+  background: url(./assets/hoisehold.png) center no-repeat;
+  /*padding: 4px 1px 18px 0px;*/
+  background-size: cover;
+  font-size: 1em;
+ font-weight: 600;
+  margin-top: 22px;
+  width: 300px;
+}
+.cantidad2{
+  font-family: 'Abril Fatface', cursive;
+  background: url(./assets/person.png) center no-repeat;
+  padding: 5px 1px 22px 0px;
+  background-size: cover;
+  font-size: 1.2em;
+  text-align: right;
+  font-weight: 600;
+  width: 300px;
+  margin: 35px;
+}
+.live-update {
+  font-family: 'Abril Fatface', cursive;
+  background-color: #FFF;
+  padding: 18px 0px;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  box-shadow: -15px 15px 0 #ffffff47;
+}
+.get-summary{
+  font-family: 'Abril Fatface', cursive;
+  background-color: #FFF;
+  padding: 18px 0px;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  box-shadow: -15px 15px 0 #ffffff47;
+}
+.items{
+  align-items: center;
+}
+.big{
+  font-size:2.5em;
+}
+
+.buttons {
+  text-align: center;
+  padding: 1rem 4.5rem !important;
+  margin: 2rem 1rem ;
+  background-color: #ffffff;
+  box-shadow: -15px 15px lightslategray;
+  font-size: 40px;
+  border-radius: 5px;
 }

@@ -1,8 +1,17 @@
 import React, {Fragment, useState, useEffect} from 'react';
 import io from 'socket.io-client'
 import {TwitterTimelineEmbed} from 'react-twitter-embed';
+import Container from "react-bootstrap/cjs/Container";
 import WasteoMeter from "./components/WasteoMeter";
 import PerHouse from "./components/PerHouse";
+import Footer from './components/Footer'
+import logo from './assets/logo-ata-blanco.png'
+import fblogo from './assets/fa.jpg'
+import instlogo from './assets/in.jpg'
+import twitterlog from'./assets/tw.jpg'
+import twet from './assets/tw.png'
+import Col from "react-bootstrap/cjs/Col";
+import Row from "react-bootstrap/cjs/Row";
 import axios from 'axios'
 
 // const CONNECTION_PORT = process.env.PORT || 'localhost:8080/'
@@ -51,7 +60,7 @@ function App() {
     // });
 
     socket.on('newPrograms', function (data) {
-        setAllPrograms([...allPrograms,data])
+        setAllPrograms([...allPrograms, data])
     });
 
     const amount = () => {
@@ -61,17 +70,19 @@ function App() {
         let suma = data.reduce(function (previous, current) {
             return previous + current;
         }, 0);
-
-        setTotalAmount(suma)
+        let parse = parseFloat(Math.round(suma * 100) / 100).toFixed(2);
+        setTotalAmount(parse)
     }
 
     const perHouse = () => {
         let payload = totalAmount / 8420000
-        setTotalPerHouse(payload)
+        let parse = parseFloat(Math.round(payload * 100) / 100).toFixed(2);
+        setTotalPerHouse(parse)
     }
     const perPerson = () => {
         let payload = totalAmount / 24998000
-        setTotalPerPerson(payload)
+       let parse = parseFloat(Math.round(payload * 100) / 100).toFixed(2);
+        setTotalPerPerson(parse)
     }
     useEffect(() => {
         amount()
@@ -96,55 +107,115 @@ function App() {
     }, [totalPerPerson])
 
     return (
+
         <div style={{display: 'flex', flexDirection: 'column', height: '100vh'}}>
-            <header style={{background: '#e4eaf1'}}>
-                <img width={'15%'} src='../public/legalise-vaping-logo.png' alt='img1'/>
+            <header>
+                <img height={'85%'} src={logo} alt='img1'/>
             </header>
-            <div style={{background: '#6a7b8d', flex: '1'}}>
-                <h1 style={{color: 'white'}}>
+            <div className={'app'} style={{flex: '1', display:'flex', flexDirection:'column', textAlign:'center',alignItems:'center',}}>
+                <h1 style={{color: 'white', textAlign:'center'}}>
                     WASTE WATCHERS
                 </h1>
                 <p style={{color: 'white'}}>The Australian Taxpayers' Alliance budget night tracker</p>
-                <WasteoMeter
-                    totalAmount={totalAmount}
-                    allPrograms={allPrograms}
-                    showSpecifics={showSpecifics}
-                    setShowSpecifics={setShowSpecifics}/>
-                <PerHouse
-                    totalPerHouse={totalPerHouse}
-                    totalPerPerson={totalPerPerson}
-                    totalAmount={totalAmount}
-                />
-                <div style={{background: 'white', alignItems: 'center'}}>
-                    <div className="centerContent">
-                        <div className="selfCenter standardWidth">
-                            <TwitterTimelineEmbed
-                                sourceType="timeline"
-                                id="539487832448843776"
-                                theme="dark"
-                                options={{height: 600, width: 600}}
-                            />
-                        </div>
+                <div>
+                    <WasteoMeter
+                        totalAmount={totalAmount}
+                        allPrograms={allPrograms}
+                        showSpecifics={showSpecifics}
+                        setShowSpecifics={setShowSpecifics}/>
+
+                </div>
+<div>
+    <PerHouse
+        totalPerHouse={totalPerHouse}
+        totalPerPerson={totalPerPerson}
+        totalAmount={totalAmount}
+    />
+
+</div>
+
+               <div>
+
+                       <Container md={4} className={'containerAlt'}>
+
+                           <div className="centerContent">
+                               <h2>
+                                   <img src={twet} width="60" alt="twitter"/>
+                                   Live Update
+                               </h2>
+                               <div className="selfCenter standardWidth">
+                                   <TwitterTimelineEmbed
+                                       sourceType="timeline"
+                                       id="539487832448843776"
+                                       theme="dark"
+                                       options={{height: 600, width: 600}}
+                                   />
+                               </div>
+                           </div>
+
+                       </Container>
+
+               </div>
+                <div>
+                    <Container md={6} style={{display:"flex"}} className={'containerAlt'}>
+                        <Col>
+                            <Row>
+                                <h3>
+                                    Get our budget night summary
+                                </h3>
+                            </Row>
+                        </Col>
+                        <Col>
+                            <Row>
+                                <input/>
+                            </Row>
+                            <Row>
+                                <button>
+                                    Submit
+                                </button>
+                            </Row>
+                        </Col>
+                    </Container>
+                </div>
+
+                <div style={{display:"flex"}}>
+                    <Col  className={'buttons'}>
+                  <Row  md={6}>
+                      <a role={'button'}>
+                          Subscribe
+                      </a>
+                  </Row>
+
+                    </Col>
+
+                    <Col  className={'buttons'}>
+                     <Row  md={6}>
+                         <a role={'button'}>
+                             Donate
+                         </a>
+                     </Row>
+
+
+                    </Col>
+
+                </div>
+                <div style={{display:'flex'}}>
+                    <div>
+                        <img style={{height:'50px'}} src={fblogo}/>
+                        <a/>
                     </div>
                     <div>
-                        <h1>
-                            Get our budget night summary
-                        </h1>
-                        <input/>
-                        <button>
-                            Submit
-                        </button>
+                        <img style={{height:'50px'}}  src={instlogo}/>
+                        <a/>
                     </div>
                     <div>
-                        <button>
-                            Subscribe
-                        </button>
-                        <button>
-                            Donate
-                        </button>
+                        <img style={{height:'50px'}} src={twitterlog}/>
+                        <a/>
                     </div>
                 </div>
             </div>
+
+            <Footer/>
         </div>
     );
 }

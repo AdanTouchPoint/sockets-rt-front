@@ -19,19 +19,20 @@ header {
   text-align: center;
 }
 
-.container {
-  text-align: center;
-  padding: 2rem !important;
-  margin: 3rem 3rem ;
-  background-color: #ffffff;
-  box-shadow: -15px 15px lightslategray;
-  width:600px;
-}
+/*.container {*/
+/*  text-align: center;*/
+/*  padding: 2rem !important;*/
+/*  margin: 3rem 3rem ;*/
+/*  background-color: #ffffff;*/
+/*  box-shadow: -15px 15px lightslategray;*/
+/*  width:600px;*/
+/*}*/
 
 .containerText {
+  justify-content: space-around;
   text-align: center;
   /*padding: 2rem !important;*/
-  margin: 1rem 1rem ;
+  /*margin: 1rem 1rem ;*/
   align-items: center;
 
 }
@@ -41,7 +42,6 @@ header {
   padding: 15px 15px !important;
   margin: 1rem 1rem ;
   align-items: center;
-  width:600px;
   background-color: #ffffff;
   box-shadow: -15px 15px lightslategray;
 }
@@ -62,23 +62,24 @@ header {
 .cantidad1{
   font-family: 'Abril Fatface', cursive;
   background: url(./assets/hoisehold.png) center no-repeat;
-  /*padding: 4px 1px 18px 0px;*/
+  /*padding: 5px 15px 8px 98px;*/
   background-size: cover;
   font-size: 1em;
  font-weight: 600;
-  margin-top: 22px;
+  margin: 22px;
   width: 300px;
+  justify-content: space-between;
 }
 .cantidad2{
   font-family: 'Abril Fatface', cursive;
   background: url(./assets/person.png) center no-repeat;
-  padding: 5px 1px 22px 0px;
+  /*padding: 5px 15px 52px 90px;*/
   background-size: cover;
   font-size: 1.2em;
-  text-align: right;
+  /*text-align: right;*/
   font-weight: 600;
   width: 300px;
-  margin: 35px;
+  justify-content: space-between;
 }
 .live-update {
   font-family: 'Abril Fatface', cursive;
@@ -100,15 +101,57 @@ header {
   align-items: center;
 }
 .big{
-  font-size:2.5em;
+  font-size:3.8em;
 }
 
 .buttons {
-  text-align: center;
-  padding: 1rem 4.5rem !important;
+  display: flex;
+justify-content: center;
+  padding: 1rem!important;
   margin: 2rem 1rem ;
   background-color: #ffffff;
   box-shadow: -15px 15px lightslategray;
   font-size: 40px;
   border-radius: 5px;
+
+}
+
+@media (max-width: 767px) {
+  .big  {
+    font-size: 1.5em;
+    text-align: center;
+  }
+  .cantidad1 {
+    font-size: 10px;
+  }
+
+}
+
+.H2 {
+  margin: 0 2em;
+  padding: 0 2em;
+}
+
+.H3 {
+  margin: 0 2em;
+  padding: 0 3em 1em;
+}
+.per{
+ display: flex;
+  justify-content: space-around;
+}
+@media (max-width: 700px) {
+  .per{
+    display: block;
+  }
+  .H2 {
+    margin: 0 1em;
+    padding: 0 1em;
+  }
+
+  .H3 {
+    margin: 0 1em;
+    padding: 0 1em .2em;
+  }
+
 }

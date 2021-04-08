@@ -8,11 +8,12 @@ import Footer from './components/Footer'
 import logo from './assets/logo-ata-blanco.png'
 import fblogo from './assets/fa.jpg'
 import instlogo from './assets/in.jpg'
-import twitterlog from'./assets/tw.jpg'
+import twitterlog from './assets/tw.jpg'
 import twet from './assets/tw.png'
 import Col from "react-bootstrap/cjs/Col";
 import Row from "react-bootstrap/cjs/Row";
 import axios from 'axios'
+import Button from "react-bootstrap/cjs/Button";
 
 // const CONNECTION_PORT = process.env.PORT || 'localhost:8080/'
 let socket = io('https://budget-real-time.herokuapp.com')
@@ -81,7 +82,7 @@ function App() {
     }
     const perPerson = () => {
         let payload = totalAmount / 24998000
-       let parse = parseFloat(Math.round(payload * 100) / 100).toFixed(2);
+        let parse = parseFloat(Math.round(payload * 100) / 100).toFixed(2);
         setTotalPerPerson(parse)
     }
     useEffect(() => {
@@ -112,52 +113,55 @@ function App() {
             <header>
                 <img height={'85%'} src={logo} alt='img1'/>
             </header>
-            <div className={'app'} style={{flex: '1', display:'flex', flexDirection:'column', textAlign:'center',alignItems:'center',}}>
-                <h1 style={{color: 'white', textAlign:'center'}}>
+            <div className={'app'} style={{
+                flex: '1',
+                display: 'flex',
+                flexDirection: 'column',
+                textAlign: 'center',
+                alignItems: 'center',
+            }}>
+                <h1 style={{color: 'white', textAlign: 'center'}}>
                     WASTE WATCHERS
                 </h1>
                 <p style={{color: 'white'}}>The Australian Taxpayers' Alliance budget night tracker</p>
-                <div>
-                    <WasteoMeter
-                        totalAmount={totalAmount}
-                        allPrograms={allPrograms}
-                        showSpecifics={showSpecifics}
-                        setShowSpecifics={setShowSpecifics}/>
 
-                </div>
+                <WasteoMeter
+                    totalAmount={totalAmount}
+                    allPrograms={allPrograms}
+                    showSpecifics={showSpecifics}
+                    setShowSpecifics={setShowSpecifics}/>
+
 <div>
-    <PerHouse
-        totalPerHouse={totalPerHouse}
-        totalPerPerson={totalPerPerson}
-        totalAmount={totalAmount}
-    />
-
+                <PerHouse
+                    totalPerHouse={totalPerHouse}
+                    totalPerPerson={totalPerPerson}
+                    totalAmount={totalAmount}
+                />
 </div>
 
-               <div>
-
-                       <Container md={4} className={'containerAlt'}>
-
-                           <div className="centerContent">
-                               <h2>
-                                   <img src={twet} width="60" alt="twitter"/>
-                                   Live Update
-                               </h2>
-                               <div className="selfCenter standardWidth">
-                                   <TwitterTimelineEmbed
-                                       sourceType="timeline"
-                                       id="539487832448843776"
-                                       theme="dark"
-                                       options={{height: 600, width: 600}}
-                                   />
-                               </div>
-                           </div>
-
-                       </Container>
-
-               </div>
                 <div>
-                    <Container md={6} style={{display:"flex"}} className={'containerAlt'}>
+
+                    <Container md={4} className={'containerAlt'}>
+                        <div className="centerContent">
+                            <h2>
+                                <img src={twet} width="60" alt="twitter"/>
+                                Live Update
+                            </h2>
+                            <div className="selfCenter standardWidth">
+                                <TwitterTimelineEmbed
+                                    sourceType="timeline"
+                                    id="539487832448843776"
+                                    theme="dark"
+                                    options={{height: 600, width: 600}}
+                                />
+                            </div>
+                        </div>
+
+                    </Container>
+
+                </div>
+                <div>
+                    <Container md={4} xs={9} style={{display: "flex"}} className={'containerAlt'}>
                         <Col>
                             <Row>
                                 <h3>
@@ -167,50 +171,53 @@ function App() {
                         </Col>
                         <Col>
                             <Row>
-                                <input/>
+                                <input
+                                    style={{width: '100%', margin: '10px'}}/>
                             </Row>
                             <Row>
-                                <button>
+                                <Button style={{width: '100%'}} variant="secondary" size="sm">
                                     Submit
-                                </button>
+                                </Button>
                             </Row>
                         </Col>
                     </Container>
                 </div>
+                <div>
+                    <Container className={'containerText'}
+                               style={{maxWidth: '200', backgroundColor: 'null', display: "flex"}}>
+                        <Col xs={5} md={8} className={'buttons'}>
+                            <Row>
+                                <a href={'http://www.taxpayers.org.au/sign-up-newsletter'} target={'blank'}
+                                   role={'button'}>
+                                    Subscribe
+                                </a>
+                            </Row>
+                        </Col>
 
-                <div style={{display:"flex"}}>
-                    <Col  className={'buttons'}>
-                  <Row  md={6}>
-                      <a role={'button'}>
-                          Subscribe
-                      </a>
-                  </Row>
-
-                    </Col>
-
-                    <Col  className={'buttons'}>
-                     <Row  md={6}>
-                         <a role={'button'}>
-                             Donate
-                         </a>
-                     </Row>
-
-
-                    </Col>
-
+                        <Col xs={5} md={8} className={'buttons'}>
+                            <Row>
+                                <a href={'http://www.taxpayers.org.au/donate'} target={'blank'}>
+                                    Donate
+                                </a>
+                            </Row>
+                        </Col>
+                    </Container>
                 </div>
-                <div style={{display:'flex'}}>
-                    <div>
-                        <img style={{height:'50px'}} src={fblogo}/>
-                        <a/>
+                <div style={{display: 'flex'}}>
+                    <div style={{padding: '8px'}}>
+                        <a href={'https://www.facebook.com/AusTaxpayers'} role={'button'} target={'blank'}>
+                            <img style={{height: '50px'}} src={fblogo}/>
+                        </a>
                     </div>
-                    <div>
-                        <img style={{height:'50px'}}  src={instlogo}/>
-                        <a/>
+                    <div style={{padding: '8px'}}>
+                        <a href={'https://www.instagram.com/austaxpayersalliance/'} target={'blank'}>
+                            <img style={{height: '50px'}} src={instlogo}/>
+                        </a>
                     </div>
-                    <div>
-                        <img style={{height:'50px'}} src={twitterlog}/>
-                        <a/>
+                    <div style={{padding: '8px'}}>
+                        <a href={'https://twitter.com/AusTaxpayers'} target={'blank'}>
+                            <img style={{height: '50px'}} src={twitterlog}/>
+                        </a>
                     </div>
                 </div>
             </div>

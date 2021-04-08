@@ -4,7 +4,8 @@ import Container from "react-bootstrap/cjs/Container";
 import Col from 'react-bootstrap/cjs/Col'
 import List from './List'
 
-const WasteoMeter = ({showSpecifics, setShowSpecifics, allPrograms, totalAmount}) => {
+const WasteoMeter = ({showSpecifics, setShowSpecifics, allPrograms, totalAmount, total,setTotal}) => {
+
 
     const click = e => {
         e.preventDefault()
@@ -14,11 +15,21 @@ const WasteoMeter = ({showSpecifics, setShowSpecifics, allPrograms, totalAmount}
         } else setShowSpecifics(true)
     }
 
+    const formatter = new Intl.NumberFormat('en-GB', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 0
+    })
+    const div = formatter.format(totalAmount)
+    setTotal(div)
+
     return (
-               <Col xs={11} md={6} xl={4} className={'containerAlt'} style={{ textAlign: 'left',backgroundColor: 'white'}} >
+               <Col xs={11} md={6} xl={4} lg={4} className={'containerAlt'} style={{maxWidth:'600px', textAlign: 'left',backgroundColor: 'white'}} >
                    <h2>Waste-o-Meter</h2>
                        <h1 className={'big'}>
-                           ${totalAmount}
+                           {
+                                total
+                            }
                        </h1>
                        <Button variant={'warning'} onClick={click}>
                            ShowDetail

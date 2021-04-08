@@ -5,17 +5,17 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 const PerHouse = ({totalPerPerson, totalPerHouse}) => {
     return(
-<div className={'per'}>
+<div className={'per'} style={{margin:'15px 0'}}>
            <Col  className={'containerText'} >
+               <h2  >Per HouseHold</h2>
                <Row sm={6} xl={4} className={'cantidad1'} >
-                   <h2 className={'H2'} >Per HouseHold</h2>
-                   <h3 className={'H3'} > ${totalPerHouse} </h3>
+                   <h3 style={{padding:'10px '}}> {totalPerHouse} </h3>
                </Row>
            </Col>
-        <Col  className={'containerText'} style={{marginLeft:'2em'}}>
-                <Row  sm={6} xl={4} className={'cantidad2'}>
-                    <h2  className={'H2'}>Per Person</h2>
-                    <h3 className={'H3'}  > $ {totalPerPerson} </h3>
+        <Col  className={'containerText'} >
+            <h2 style={{margin:'10px'}}>Per Person</h2>
+                <Row sm={6} xl={4} className={'cantidad2'}>
+                    <h3> {totalPerPerson} </h3>
                 </Row>
             </Col>
 </div>

@@ -24,7 +24,7 @@ function App() {
     const [totalPerHouse, setTotalPerHouse] = useState()
     const [totalPerPerson, setTotalPerPerson] = useState()
     const [totalAmount, setTotalAmount] = useState([])
-
+    const [total,setTotal] = useState([])
     const programs = async () => {
         let data = await axios.get(`https://budget-real-time.herokuapp.com/program`)
         return data
@@ -75,15 +75,25 @@ function App() {
         setTotalAmount(parse)
     }
 
+    const formatter = new Intl.NumberFormat('en-GB', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 0
+
+    })
     const perHouse = () => {
         let payload = totalAmount / 8420000
         let parse = parseFloat(Math.round(payload * 100) / 100).toFixed(2);
-        setTotalPerHouse(parse)
+        const div = formatter.format(parse)
+        setTotalPerHouse(div)
     }
     const perPerson = () => {
         let payload = totalAmount / 24998000
         let parse = parseFloat(Math.round(payload * 100) / 100).toFixed(2);
-        setTotalPerPerson(parse)
+
+        const div = formatter.format(parse)
+
+        setTotalPerPerson(div)
     }
     useEffect(() => {
         amount()
@@ -98,6 +108,7 @@ function App() {
         console.log(totalAmount)
         perHouse()
         perPerson()
+        // setTotal([total])
     }, [totalAmount])
 
     useEffect(() => {
@@ -126,6 +137,8 @@ function App() {
                 <p style={{color: 'white'}}>The Australian Taxpayers' Alliance budget night tracker</p>
 
                 <WasteoMeter
+                    setTotal={setTotal}
+                    total={total}
                     totalAmount={totalAmount}
                     allPrograms={allPrograms}
                     showSpecifics={showSpecifics}
@@ -161,7 +174,7 @@ function App() {
 
                 </div>
                 <div>
-                    <Container md={4} xs={9} style={{display: "flex"}} className={'containerAlt'}>
+                    <Container md={4} xs={9} style={{display: "flex", padding:'5px 5px',margin: '16px 5px'}} className={'containerAlt'}>
                         <Col>
                             <Row>
                                 <h3>
@@ -172,20 +185,20 @@ function App() {
                         <Col>
                             <Row>
                                 <input
-                                    style={{width: '100%', margin: '10px'}}/>
+                                    style={{width: '90%', marginBottom:'5px'}}/>
                             </Row>
                             <Row>
-                                <Button style={{width: '100%'}} variant="secondary" size="sm">
+                                <Button style={{width: '90%'}} variant="secondary" size="sm">
                                     Submit
                                 </Button>
                             </Row>
                         </Col>
                     </Container>
                 </div>
-                <div>
-                    <Container className={'containerText'}
-                               style={{maxWidth: '200', backgroundColor: 'null', display: "flex"}}>
-                        <Col xs={5} md={8} className={'buttons'}>
+                <div >
+                    <Container className={'buttonContainer'}
+                               style={{backgroundColor: 'null', display: "flex"}}>
+                        <Col xs={5} md={8} className={'buttons'} style={{marginRight:'15px'}}>
                             <Row>
                                 <a href={'http://www.taxpayers.org.au/sign-up-newsletter'} target={'blank'}
                                    role={'button'}>
@@ -203,8 +216,8 @@ function App() {
                         </Col>
                     </Container>
                 </div>
-                <div style={{display: 'flex'}}>
-                    <div style={{padding: '8px'}}>
+                <div style={{display: 'flex',  marginTop:'1em'}}>
+                    <div style={{padding: '8px',}}>
                         <a href={'https://www.facebook.com/AusTaxpayers'} role={'button'} target={'blank'}>
                             <img style={{height: '50px'}} src={fblogo}/>
                         </a>

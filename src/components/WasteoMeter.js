@@ -14,7 +14,7 @@ const WasteoMeter = ({showSpecifics, setShowSpecifics, allPrograms, totalAmount,
     const div = formatter.format(totalAmount)
     setTotal(div)
     return (
-        <Container style={{ boxShadow:'-15px 15px lightslategray', maxWidth:'600px', margin:'5px', textAlign: 'left',backgroundColor: 'white'}} sm={5} xl={12} >
+        <Container style={{padding:'15px 0', boxShadow:'-15px 15px lightslategray', maxWidth:'600px', margin:'5px', textAlign: 'left',backgroundColor: 'white'}} sm={5} xl={12} >
                <Col     >
                    <h2>Waste-o-Meter</h2>
                        <h1 className={'big'}>

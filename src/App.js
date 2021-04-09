@@ -183,15 +183,15 @@ function App() {
                             <Row>
                                 <a href={'http://www.taxpayers.org.au/sign-up-newsletter'} target={'blank'}
                                    role={'button'}>
-                                    Subscribe
+                                    <p style={{color:'black'}}>Subscribe</p>
                                 </a>
                             </Row>
                         </Col>
 
                         <Col xs={5} md={8} className={'buttons'}>
-                            <Row>
-                                <a href={'http://www.taxpayers.org.au/donate'} target={'blank'}>
-                                    Donate
+                            <Row >
+                                <a  href={'http://www.taxpayers.org.au/donate'} target={'blank'}>
+                                <p style={{color:'black'}}>Donate</p>
                                 </a>
                             </Row>
                         </Col>
@@ -200,17 +200,17 @@ function App() {
                 <div style={{display: 'flex', marginTop: '3em'}}>
                     <div style={{padding: '8px',}}>
                         <a href={'https://www.facebook.com/AusTaxpayers'} role={'button'} target={'blank'}>
-                            <img style={{height: '50px'}} src={fblogo} alt={'tweet'}/>
+                            <img style={{height: '40px'}} src={fblogo} alt={'tweet'}/>
                         </a>
                     </div>
                     <div style={{padding: '8px'}}>
                         <a href={'https://www.instagram.com/austaxpayersalliance/'} target={'blank'}>
-                            <img style={{height: '50px'}} src={instlogo} alt={'tweet'}/>
+                            <img style={{height: '40px'}} src={instlogo} alt={'tweet'}/>
                         </a>
                     </div>
                     <div style={{padding: '8px'}}>
                         <a href={'https://twitter.com/AusTaxpayers'} target={'blank'}>
-                            <img style={{height: '50px'}} src={twitterlog} alt={'tweet'}/>
+                            <img style={{height: '40px'}} src={twitterlog} alt={'tweet'}/>
                         </a>
                     </div>
                 </div>

@@ -45,15 +45,10 @@ function App() {
             return item
         }))
     });
-    // socket.on('deletedPrograms', function (data) {
-    //  let del = allPrograms.forEach(function (item, index, object) {
-    //         if (item.id === data.id) {
-    //             object.splice(index, 1);
-    //             return item
-    //         }
-    //     });
-    //  setAllPrograms([del])
-    // });
+    socket.on('deletedPrograms', function (data) {
+        let deletePrograms = allPrograms.filter((item) => item.id !== data.id );
+     setAllPrograms(deletePrograms)
+    });
     socket.on('newPrograms', function (data) {
         setAllPrograms([...allPrograms, data])
     });

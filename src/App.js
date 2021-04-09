@@ -46,8 +46,10 @@ function App() {
         }))
     });
     socket.on('deletedPrograms', function (data) {
-        let deletePrograms = allPrograms.filter((item) => item.id !== data.id );
-     setAllPrograms(deletePrograms)
+        console.log(data)
+        let deletePrograms = allPrograms.filter((item) => item.id !== data);
+        setAllPrograms(deletePrograms)
+        console.log(deletePrograms)
     });
     socket.on('newPrograms', function (data) {
         setAllPrograms([...allPrograms, data])
@@ -116,14 +118,14 @@ function App() {
                     <Container xs={11} md={10} xl={4} lg={4}
                                style={{display: "flex", padding: '1px 0px', margin: '26px 0px'}}
                                className={'containerAlt'}>
-                        <Col style={{padding: '2px', maxWidth: '200px'}}>
+                        <Col style={{padding: '2px', maxWidth: '300px'}}>
                             <Row>
                                 <h3>
                                     Get our budget night summary
                                 </h3>
                             </Row>
                         </Col>
-                        <Col style={{padding: '2px', maxWidth: '200px'}}>
+                        <Col style={{padding: '2px', maxWidth: '300px'}}>
 
                             <input
                                 style={{width: '70%', marginBottom: '5px'}}/>

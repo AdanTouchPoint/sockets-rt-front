@@ -2,7 +2,7 @@ import React from 'react';
 import Button from "react-bootstrap/cjs/Button";
 import Col from 'react-bootstrap/cjs/Col'
 import List from './List'
-
+import Container from "react-bootstrap/cjs/Container";
 const WasteoMeter = ({showSpecifics, setShowSpecifics, allPrograms, totalAmount, total,setTotal}) => {
     const click = e => {
         e.preventDefault()
@@ -14,8 +14,8 @@ const WasteoMeter = ({showSpecifics, setShowSpecifics, allPrograms, totalAmount,
     const div = formatter.format(totalAmount)
     setTotal(div)
     return (
-        <div >
-               <Col   className={'containerAlt'} style={{pading:'2px', margin:'5px', textAlign: 'left',backgroundColor: 'white'}} >
+        <Container style={{ boxShadow:'-15px 15px lightslategray', maxWidth:'600px', margin:'5px', textAlign: 'left',backgroundColor: 'white'}} sm={5} xl={12} >
+               <Col     >
                    <h2>Waste-o-Meter</h2>
                        <h1 className={'big'}>
                            ${
@@ -30,7 +30,7 @@ const WasteoMeter = ({showSpecifics, setShowSpecifics, allPrograms, totalAmount,
                            setShowSpecifics={setShowSpecifics}
                            showSpecifics={showSpecifics}/>
                </Col>
-        </div>
+        </Container>
     )
 }
 export default WasteoMeter;

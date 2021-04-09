@@ -24,7 +24,7 @@ function App() {
     const [totalPerHouse, setTotalPerHouse] = useState()
     const [totalPerPerson, setTotalPerPerson] = useState()
     const [totalAmount, setTotalAmount] = useState([])
-    const [total,setTotal] = useState([])
+    const [total, setTotal] = useState([])
     const programs = async () => {
         let data = await axios.get(`https://budget-real-time.herokuapp.com/program`)
         return data
@@ -75,12 +75,7 @@ function App() {
         setTotalAmount(parse)
     }
 
-    const formatter = new Intl.NumberFormat('en-GB', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 0
-
-    })
+    const formatter = new Intl.NumberFormat('en-GB')
     const perHouse = () => {
         let payload = totalAmount / 8420000
         let parse = parseFloat(Math.round(payload * 100) / 100).toFixed(2);
@@ -90,9 +85,7 @@ function App() {
     const perPerson = () => {
         let payload = totalAmount / 24998000
         let parse = parseFloat(Math.round(payload * 100) / 100).toFixed(2);
-
         const div = formatter.format(parse)
-
         setTotalPerPerson(div)
     }
     useEffect(() => {
@@ -135,6 +128,29 @@ function App() {
                     WASTE WATCHERS
                 </h1>
                 <p style={{color: 'white'}}>The Australian Taxpayers' Alliance budget night tracker</p>
+                <div>
+                    <Container xs={11} md={10} xl={4} lg={4} style={{display: "flex", padding: '1px 0px', margin: '26px 0px'}}
+                               className={'containerAlt'}>
+                        <Col  style={{padding:'2px', maxWidth:'200px'}}>
+                            <Row >
+                                <h3>
+                                    Get our budget night summary
+                                </h3>
+                            </Row>
+                        </Col>
+                        <Col style={{padding:'2px', maxWidth:'200px'}}>
+
+                                <input
+                                    style={{width: '70%', marginBottom: '5px'}}/>
+
+
+                                <Button style={{width: '70%'}} variant="secondary" size="sm">
+                                    Submit
+                                </Button>
+
+                        </Col>
+                    </Container>
+                </div>
 
                 <WasteoMeter
                     setTotal={setTotal}
@@ -143,62 +159,40 @@ function App() {
                     allPrograms={allPrograms}
                     showSpecifics={showSpecifics}
                     setShowSpecifics={setShowSpecifics}/>
+                <div>
+                    <PerHouse
+                        totalPerHouse={totalPerHouse}
+                        totalPerPerson={totalPerPerson}
+                        totalAmount={totalAmount}
+                    />
+                </div>
 
-<div>
-                <PerHouse
-                    totalPerHouse={totalPerHouse}
-                    totalPerPerson={totalPerPerson}
-                    totalAmount={totalAmount}
-                />
-</div>
+                {/*<div>*/}
+
+                {/*    <Container md={4} className={'containerAlt'}>*/}
+                {/*        <div className="centerContent">*/}
+                {/*            <h2>*/}
+                {/*                <img src={twet} width="60" alt="twitter"/>*/}
+                {/*                Live Update*/}
+                {/*            </h2>*/}
+                {/*            <div className="selfCenter standardWidth">*/}
+                {/*                <TwitterTimelineEmbed*/}
+                {/*                    sourceType="timeline"*/}
+                {/*                    id="539487832448843776"*/}
+                {/*                    theme="dark"*/}
+                {/*                    options={{height: 600, width: 600}}*/}
+                {/*                />*/}
+                {/*            </div>*/}
+                {/*        </div>*/}
+
+                {/*    </Container>*/}
+
+                {/*</div>*/}
 
                 <div>
-
-                    <Container md={4} className={'containerAlt'}>
-                        <div className="centerContent">
-                            <h2>
-                                <img src={twet} width="60" alt="twitter"/>
-                                Live Update
-                            </h2>
-                            <div className="selfCenter standardWidth">
-                                <TwitterTimelineEmbed
-                                    sourceType="timeline"
-                                    id="539487832448843776"
-                                    theme="dark"
-                                    options={{height: 600, width: 600}}
-                                />
-                            </div>
-                        </div>
-
-                    </Container>
-
-                </div>
-                <div>
-                    <Container md={4} xs={9} style={{display: "flex", padding:'5px 5px',margin: '16px 5px'}} className={'containerAlt'}>
-                        <Col>
-                            <Row>
-                                <h3>
-                                    Get our budget night summary
-                                </h3>
-                            </Row>
-                        </Col>
-                        <Col>
-                            <Row>
-                                <input
-                                    style={{width: '90%', marginBottom:'5px'}}/>
-                            </Row>
-                            <Row>
-                                <Button style={{width: '90%'}} variant="secondary" size="sm">
-                                    Submit
-                                </Button>
-                            </Row>
-                        </Col>
-                    </Container>
-                </div>
-                <div >
                     <Container className={'buttonContainer'}
                                style={{backgroundColor: 'null', display: "flex"}}>
-                        <Col xs={5} md={8} className={'buttons'} style={{marginRight:'15px'}}>
+                        <Col xs={5} md={8} className={'buttons'} style={{marginRight: '15px'}}>
                             <Row>
                                 <a href={'http://www.taxpayers.org.au/sign-up-newsletter'} target={'blank'}
                                    role={'button'}>
@@ -216,7 +210,7 @@ function App() {
                         </Col>
                     </Container>
                 </div>
-                <div style={{display: 'flex',  marginTop:'1em'}}>
+                <div style={{display: 'flex', marginTop: '1em'}}>
                     <div style={{padding: '8px',}}>
                         <a href={'https://www.facebook.com/AusTaxpayers'} role={'button'} target={'blank'}>
                             <img style={{height: '50px'}} src={fblogo}/>

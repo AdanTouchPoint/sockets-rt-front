@@ -8,8 +8,8 @@ h1 {
 p {
     font-family: 'Abril Fatface', cursive;
     text-align: center;
-}
 
+}
 h2 {
     font-family: 'Abril Fatface', cursive;
     text-align: center;
@@ -43,7 +43,15 @@ header {
 .containerAlt {
     font-family: 'Abril Fatface', cursive;
     text-align: center;
-    padding: 15px 15px ;
+    /*padding: 15px 15px ;*/
+    align-items: center;
+    background-color: #ffffff;
+    box-shadow: -15px 15px lightslategray;
+}
+ .containerAlter {
+    font-family: 'Abril Fatface', cursive;
+    text-align: center;
+
     align-items: center;
     background-color: #ffffff;
     box-shadow: -15px 15px lightslategray;
@@ -73,25 +81,25 @@ header {
 .cantidad1 {
     font-family: 'Abril Fatface', cursive;
     background: url(./assets/hoisehold.png) center no-repeat;
-    padding: 5px 15px 52px 98px;
+    padding: 25px 25px 32px 98px;
     background-size: contain;
     font-size: 1.2em;
     font-weight: 600;
     /*margin: 22px;*/
     width: 300px;
-    justify-content: space-between;
+    /*justify-content: space-between;*/
 }
 
 .cantidad2 {
     font-family: 'Abril Fatface', cursive;
     background: url(./assets/person.png) center no-repeat;
-    padding: 5px 15px 52px 98px;
-    background-size: cover;
+    padding: 25px 5px 52px 98px;
+    background-size: contain;
     font-size: 1.2em;
-    text-align: right;
+    text-align: justify;
     font-weight: 600;
     width: 300px;
-    justify-content: space-between;
+    /*justify-content: space-between;*/
 }
 
 .live-update {
@@ -205,3 +213,9 @@ header {
         display: block;
     }
 }
+@media (max-width: 400px) {
+    .containerAlter {
+       width:700px ;
+    }
+}
+

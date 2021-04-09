@@ -15,19 +15,16 @@ const WasteoMeter = ({showSpecifics, setShowSpecifics, allPrograms, totalAmount,
         } else setShowSpecifics(true)
     }
 
-    const formatter = new Intl.NumberFormat('en-GB', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 0
-    })
+    const formatter = new Intl.NumberFormat('en-GB')
     const div = formatter.format(totalAmount)
     setTotal(div)
 
     return (
-               <Col xs={11} md={6} xl={4} lg={4} className={'containerAlt'} style={{maxWidth:'600px', textAlign: 'left',backgroundColor: 'white'}} >
+        <div >
+               <Col   className={'containerAlt'} style={{pading:'2px', margin:'5px', textAlign: 'left',backgroundColor: 'white'}} >
                    <h2>Waste-o-Meter</h2>
                        <h1 className={'big'}>
-                           {
+                           ${
                                 total
                             }
                        </h1>
@@ -39,7 +36,7 @@ const WasteoMeter = ({showSpecifics, setShowSpecifics, allPrograms, totalAmount,
                            setShowSpecifics={setShowSpecifics}
                            showSpecifics={showSpecifics}/>
                </Col>
-
+        </div>
     )
 }
 export default WasteoMeter;

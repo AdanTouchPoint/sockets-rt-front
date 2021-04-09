@@ -1,8 +1,5 @@
-import React, {Fragment,useState, useEffect} from 'react';
-import Button from "react-bootstrap/cjs/Button";
-import Container from "react-bootstrap/cjs/Container";
+import React from 'react';
 import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
 const PerHouse = ({totalPerPerson, totalPerHouse}) => {
     return(
 <div className={'per'} style={{margin:'15px 0'}}>
@@ -11,7 +8,6 @@ const PerHouse = ({totalPerPerson, totalPerHouse}) => {
                <div sm={6} xl={4} className={'cantidad1'} >
                    <h3 style={{ alignItems:'center', padding:'10px'}}> ${totalPerHouse} </h3>
                </div>
-
            </Col>
         <Col >
             <h2 style={{color:'white'}} >Per Person</h2>

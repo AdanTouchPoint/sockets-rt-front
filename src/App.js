@@ -1,6 +1,5 @@
-import React, {Fragment, useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import io from 'socket.io-client'
-import {TwitterTimelineEmbed} from 'react-twitter-embed';
 import Container from "react-bootstrap/cjs/Container";
 import WasteoMeter from "./components/WasteoMeter";
 import PerHouse from "./components/PerHouse";
@@ -9,7 +8,6 @@ import logo from './assets/logo-ata-blanco.png'
 import fblogo from './assets/fa.jpg'
 import instlogo from './assets/in.jpg'
 import twitterlog from './assets/tw.jpg'
-import twet from './assets/tw.png'
 import Col from "react-bootstrap/cjs/Col";
 import Row from "react-bootstrap/cjs/Row";
 import axios from 'axios'
@@ -29,14 +27,12 @@ function App() {
         let data = await axios.get(`https://budget-real-time.herokuapp.com/program`)
         return data
     }
-
     useEffect(() => {
         programs()
             .then(data => {
                 setAllPrograms(data.data.data)
             })
     }, [])
-
     socket.on('updatedPrograms', function (data) {
         setAllPrograms(allPrograms.map((item) => {
             if (item.id === data.id) {
@@ -49,7 +45,6 @@ function App() {
             return item
         }))
     });
-
     // socket.on('deletedPrograms', function (data) {
     //  let del = allPrograms.forEach(function (item, index, object) {
     //         if (item.id === data.id) {
@@ -59,11 +54,9 @@ function App() {
     //     });
     //  setAllPrograms([del])
     // });
-
     socket.on('newPrograms', function (data) {
         setAllPrograms([...allPrograms, data])
     });
-
     const amount = () => {
         let data = allPrograms.map((item) => {
             return item.monto
@@ -74,7 +67,6 @@ function App() {
         let parse = parseFloat(Math.round(suma * 100) / 100).toFixed(2);
         setTotalAmount(parse)
     }
-
     const formatter = new Intl.NumberFormat('en-GB')
     const perHouse = () => {
         let payload = totalAmount / 8420000
@@ -90,7 +82,6 @@ function App() {
     }
     useEffect(() => {
         amount()
-
     }, [allPrograms])
 
     useEffect(() => {
@@ -103,16 +94,14 @@ function App() {
         perPerson()
         // setTotal([total])
     }, [totalAmount])
-
     useEffect(() => {
         console.log(totalPerHouse)
     }, [totalPerHouse])
+
     useEffect(() => {
         console.log(totalPerPerson)
     }, [totalPerPerson])
-
     return (
-
         <div style={{display: 'flex', flexDirection: 'column', height: '100vh'}}>
             <header>
                 <img height={'85%'} src={logo} alt='img1'/>
@@ -129,24 +118,25 @@ function App() {
                 </h1>
                 <p style={{color: 'white'}}>The Australian Taxpayers' Alliance budget night tracker</p>
                 <div>
-                    <Container xs={11} md={10} xl={4} lg={4} style={{display: "flex", padding: '1px 0px', margin: '26px 0px'}}
+                    <Container xs={11} md={10} xl={4} lg={4}
+                               style={{display: "flex", padding: '1px 0px', margin: '26px 0px'}}
                                className={'containerAlt'}>
-                        <Col  style={{padding:'2px', maxWidth:'200px'}}>
-                            <Row >
+                        <Col style={{padding: '2px', maxWidth: '200px'}}>
+                            <Row>
                                 <h3>
                                     Get our budget night summary
                                 </h3>
                             </Row>
                         </Col>
-                        <Col style={{padding:'2px', maxWidth:'200px'}}>
+                        <Col style={{padding: '2px', maxWidth: '200px'}}>
 
-                                <input
-                                    style={{width: '70%', marginBottom: '5px'}}/>
+                            <input
+                                style={{width: '70%', marginBottom: '5px'}}/>
 
 
-                                <Button style={{width: '70%'}} variant="secondary" size="sm">
-                                    Submit
-                                </Button>
+                            <Button style={{width: '70%'}} variant="secondary" size="sm">
+                                Submit
+                            </Button>
 
                         </Col>
                     </Container>
@@ -191,8 +181,8 @@ function App() {
 
                 <div>
                     <Container className={'buttonContainer'}
-                               style={{backgroundColor: 'null', display: "flex"}}>
-                        <Col xs={5} md={8} className={'buttons'} style={{marginRight: '15px'}}>
+                               style={{marginTop: '1em', backgroundColor: 'null', display: "flex"}}>
+                        <Col xs={7} md={8} className={'buttons'} style={{marginRight: '15px'}}>
                             <Row>
                                 <a href={'http://www.taxpayers.org.au/sign-up-newsletter'} target={'blank'}
                                    role={'button'}>
@@ -210,20 +200,20 @@ function App() {
                         </Col>
                     </Container>
                 </div>
-                <div style={{display: 'flex', marginTop: '1em'}}>
+                <div style={{display: 'flex', marginTop: '3em'}}>
                     <div style={{padding: '8px',}}>
                         <a href={'https://www.facebook.com/AusTaxpayers'} role={'button'} target={'blank'}>
-                            <img style={{height: '50px'}} src={fblogo}/>
+                            <img style={{height: '50px'}} src={fblogo} alt={'tweet'}/>
                         </a>
                     </div>
                     <div style={{padding: '8px'}}>
                         <a href={'https://www.instagram.com/austaxpayersalliance/'} target={'blank'}>
-                            <img style={{height: '50px'}} src={instlogo}/>
+                            <img style={{height: '50px'}} src={instlogo} alt={'tweet'}/>
                         </a>
                     </div>
                     <div style={{padding: '8px'}}>
                         <a href={'https://twitter.com/AusTaxpayers'} target={'blank'}>
-                            <img style={{height: '50px'}} src={twitterlog}/>
+                            <img style={{height: '50px'}} src={twitterlog} alt={'tweet'}/>
                         </a>
                     </div>
                 </div>

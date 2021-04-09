@@ -72,7 +72,7 @@ header {
 .app {
     font-family: 'Abril Fatface', cursive;
     background-image: url(./assets/bgk.png);
-    background-size: contain;
+    background-size: cover;
     background-position: center;
     background-color: #687689;
     background-repeat: no-repeat;

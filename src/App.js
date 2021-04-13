@@ -19,20 +19,45 @@ let socket = io('https://budget-real-time.herokuapp.com')
 function App() {
     const [showSpecifics, setShowSpecifics] = useState(true)
     const [allPrograms, setAllPrograms] = useState([])
+    const [perP,setPerP] = useState()
+    const   [perH,setPerH] = useState()
     const [totalPerHouse, setTotalPerHouse] = useState()
     const [totalPerPerson, setTotalPerPerson] = useState()
     const [totalAmount, setTotalAmount] = useState([])
     const [total, setTotal] = useState([])
     const programs = async () => {
-        let data = await axios.get(`https://budget-real-time.herokuapp.com/program`)
+        let data = await axios.get('https://budget-real-time.herokuapp.com/program')
         return data
     }
+    const perHome = async ()=> {
+        let data =  axios.get(`https://budget-real-time.herokuapp.com/people/1`)
+        return data
+    }
+    const perPeople = async ()=> {
+        let data =  axios.get(`https://budget-real-time.herokuapp.com/people/2`)
+        return data
+    }
+    useEffect(()=>{
+        perPeople()
+            .then(data => {
+                console.log(data.data.data.cantidad)
+                setPerP(data.data.data.cantidad)
+            })
+    })
+    useEffect(()=>{
+        perHome()
+            .then(data => {
+                console.log(data.data.data.cantidad)
+                setPerH(data.data.data.cantidad)
+            })
+    })
     useEffect(() => {
         programs()
             .then(data => {
                 setAllPrograms(data.data.data)
             })
     }, [])
+
     socket.on('updatedPrograms', function (data) {
         setAllPrograms(allPrograms.map((item) => {
             if (item.id === data.id) {
@@ -46,10 +71,8 @@ function App() {
         }))
     });
     socket.on('deletedPrograms', function (data) {
-        console.log(data)
         let deletePrograms = allPrograms.filter((item) => item.id !== data);
         setAllPrograms(deletePrograms)
-        console.log(deletePrograms)
     });
     socket.on('newPrograms', function (data) {
         setAllPrograms([...allPrograms, data])
@@ -65,14 +88,16 @@ function App() {
         setTotalAmount(parse)
     }
     const formatter = new Intl.NumberFormat('en-GB')
-    const perHouse = () => {
-        let payload = totalAmount / 8420000
+
+    const perHouse =   () => {
+
+        let payload = totalAmount / perH
         let parse = parseFloat(Math.round(payload * 100) / 100).toFixed(2);
         const div = formatter.format(parse)
         setTotalPerHouse(div)
     }
     const perPerson = () => {
-        let payload = totalAmount / 24998000
+        let payload = totalAmount / perP
         let parse = parseFloat(Math.round(payload * 100) / 100).toFixed(2);
         const div = formatter.format(parse)
         setTotalPerPerson(div)
@@ -183,15 +208,15 @@ function App() {
                             <Row>
                                 <a href={'http://www.taxpayers.org.au/sign-up-newsletter'} target={'blank'}
                                    role={'button'}>
-                                    <p style={{color:'black'}}>Subscribe</p>
+                                    <p style={{color: 'black'}}>Subscribe</p>
                                 </a>
                             </Row>
                         </Col>
 
                         <Col xs={5} md={8} className={'buttons'}>
-                            <Row >
-                                <a  href={'http://www.taxpayers.org.au/donate'} target={'blank'}>
-                                <p style={{color:'black'}}>Donate</p>
+                            <Row>
+                                <a href={'http://www.taxpayers.org.au/donate'} target={'blank'}>
+                                    <p style={{color: 'black'}}>Donate</p>
                                 </a>
                             </Row>
                         </Col>

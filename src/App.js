@@ -11,7 +11,6 @@ import twitterlog from './assets/tw.jpg'
 import Col from "react-bootstrap/cjs/Col";
 import Row from "react-bootstrap/cjs/Row";
 import axios from 'axios'
-import Button from "react-bootstrap/cjs/Button";
 
 // const CONNECTION_PORT = process.env.PORT || 'localhost:8080/'
 let socket = io('https://budget-real-time.herokuapp.com')
@@ -57,6 +56,14 @@ function App() {
                 setAllPrograms(data.data.data)
             })
     }, [])
+
+
+    useEffect(() => {
+     if(window.RDStationForms) {
+         new window.RDStationForms('ata-budget-night-waste-watchers-e4b1e2ac242260f169b9', 'UA-161808655-1').createForm();
+     }
+    }, []);
+
 
     socket.on('updatedPrograms', function (data) {
         setAllPrograms(allPrograms.map((item) => {
@@ -151,14 +158,9 @@ function App() {
                             </Row>
                         </Col>
                         <Col style={{padding: '2px', maxWidth: '300px'}}>
+                            <div role="main" id="ata-budget-night-waste-watchers-e4b1e2ac242260f169b9">
 
-                            <input
-                                style={{width: '70%', marginBottom: '5px'}}/>
-
-
-                            <Button style={{width: '70%'}} variant="secondary" size="sm">
-                                Submit
-                            </Button>
+                            </div>
 
                         </Col>
                     </Container>

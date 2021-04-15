@@ -18,50 +18,84 @@ let socket = io('https://budget-real-time.herokuapp.com')
 function App() {
     const [showSpecifics, setShowSpecifics] = useState(true)
     const [allPrograms, setAllPrograms] = useState([])
-    const [perP,setPerP] = useState()
-    const   [perH,setPerH] = useState()
+    // const [perP,setPerP] = useState()
+    // const   [perH,setPerH] = useState()
     const [totalPerHouse, setTotalPerHouse] = useState()
     const [totalPerPerson, setTotalPerPerson] = useState()
     const [totalAmount, setTotalAmount] = useState([])
-    const [total, setTotal] = useState([])
+    const [total, setTotal] = useState()
 
     const programs = async () => {
         let data = await axios.get('https://budget-real-time.herokuapp.com/program')
         return data
     }
-    const perHome = async ()=> {
-        let data =  axios.get(`https://budget-real-time.herokuapp.com/people/1`)
-        return data
-    }
-    const perPeople = async ()=> {
-        let data =  axios.get(`https://budget-real-time.herokuapp.com/people/2`)
-        return data
-    }
-    useEffect(()=>{
-        perPeople()
-            .then(data => {
-
-                setPerP(data.data.data.cantidad)
-            })
-    })
-    useEffect(()=>{
-        perHome()
-            .then(data => {
-
-                setPerH(data.data.data.cantidad)
-            })
-    })
+    // const perHome = async ()=> {
+    //     let data =  axios.get(`https://budget-real-time.herokuapp.com/people/1`)
+    //     return data
+    // }
+    // const perPeople = async ()=> {
+    //     let data =  axios.get(`https://budget-real-time.herokuapp.com/people/2`)
+    //     return data
+    // }
     useEffect(() => {
         programs()
             .then(data => {
                 setAllPrograms(data.data.data)
             })
     }, [])
+    //     useEffect(()=>{
+    //     perPeople()
+    //         .then(data => {
+    //             setPerP(data.data.data.cantidad)
+    //         })
+    // },[])
+    // useEffect(()=>{
+    //     perHome()
+    //         .then(data => {
+    //
+    //             setPerH(data.data.data.cantidad)
+    //         })
+    // },[])
+
     useEffect(() => {
-     if(window.RDStationForms) {
-         new window.RDStationForms('ata-budget-night-waste-watchers-e4b1e2ac242260f169b9', 'UA-161808655-1').createForm();
-     }
+        if (window.RDStationForms) {
+            new window.RDStationForms('ata-budget-night-waste-watchers-e4b1e2ac242260f169b9', 'UA-161808655-1').createForm();
+        }
     }, []);
+
+    const amount = () => {
+        let data = allPrograms.map((item) => {
+            return item.monto
+        })
+        let suma = data.reduce(function (previous, current) {
+            return previous + current;
+        }, 0);
+        let parse = parseFloat(Math.round(suma * 100) / 100).toFixed(2);
+        setTotalAmount(parse)
+    }
+    const formatter = new Intl.NumberFormat('en-GB')
+
+    const perHouse = () => {
+        let payload = totalAmount / 8420000   //perH
+        let parse = parseFloat(Math.round(payload * 100) / 100).toFixed(2);
+        const div = formatter.format(parse)
+        setTotalPerHouse(div)
+    }
+    const perPerson = () => {
+        let payload = totalAmount / 24998000    //perP
+        let parse = parseFloat(Math.round(payload * 100) / 100).toFixed(2);
+        const div = formatter.format(parse)
+        setTotalPerPerson(div)
+    }
+    useEffect(() => {
+        amount()
+    }, [allPrograms])
+
+    useEffect(() => {
+        perHouse()
+        perPerson()
+    }, [totalAmount])
+
     socket.on('updatedPrograms', function (data) {
         setAllPrograms(allPrograms.map((item) => {
             if (item.id === data.id) {
@@ -81,39 +115,6 @@ function App() {
     socket.on('newPrograms', function (data) {
         setAllPrograms([...allPrograms, data])
     });
-    const amount = () => {
-        let data = allPrograms.map((item) => {
-            return item.monto
-        })
-        let suma = data.reduce(function (previous, current) {
-            return previous + current;
-        }, 0);
-        let parse = parseFloat(Math.round(suma * 100) / 100).toFixed(2);
-        setTotalAmount(parse)
-    }
-    const formatter = new Intl.NumberFormat('en-GB')
-
-    const perHouse =   () => {
-        let payload = totalAmount / perH
-        let parse = parseFloat(Math.round(payload * 100) / 100).toFixed(2);
-        const div = formatter.format(parse)
-        setTotalPerHouse(div)
-    }
-    const perPerson = () => {
-        let payload = totalAmount / perP
-        let parse = parseFloat(Math.round(payload * 100) / 100).toFixed(2);
-        const div = formatter.format(parse)
-        setTotalPerPerson(div)
-    }
-    useEffect(() => {
-        amount()
-    }, [allPrograms])
-
-    useEffect(() => {
-        perHouse()
-        perPerson()
-        // setTotal([total])
-    }, [totalAmount])
 
     return (
         <div style={{display: 'flex', flexDirection: 'column', height: '100vh'}}>

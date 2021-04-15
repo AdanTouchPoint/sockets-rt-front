@@ -11,7 +11,7 @@ const WasteoMeter = ({showSpecifics, setShowSpecifics, allPrograms, totalAmount,
         } else setShowSpecifics(true)
     }
     const formatter = new Intl.NumberFormat('en-GB')
-    const div = formatter.format(totalAmount)
+    let div = formatter.format(totalAmount)
     setTotal(div)
     return (
         <Container style={{padding:'15px 0', boxShadow:'-15px 15px lightslategray', maxWidth:'600px', margin:'5px', textAlign: 'left',backgroundColor: 'white'}} sm={5} xl={12} >

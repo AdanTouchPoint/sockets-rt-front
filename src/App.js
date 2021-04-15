@@ -24,6 +24,7 @@ function App() {
     const [totalPerPerson, setTotalPerPerson] = useState()
     const [totalAmount, setTotalAmount] = useState([])
     const [total, setTotal] = useState([])
+
     const programs = async () => {
         let data = await axios.get('https://budget-real-time.herokuapp.com/program')
         return data
@@ -39,14 +40,14 @@ function App() {
     useEffect(()=>{
         perPeople()
             .then(data => {
-                console.log(data.data.data.cantidad)
+
                 setPerP(data.data.data.cantidad)
             })
     })
     useEffect(()=>{
         perHome()
             .then(data => {
-                console.log(data.data.data.cantidad)
+
                 setPerH(data.data.data.cantidad)
             })
     })
@@ -56,15 +57,11 @@ function App() {
                 setAllPrograms(data.data.data)
             })
     }, [])
-
-
     useEffect(() => {
      if(window.RDStationForms) {
          new window.RDStationForms('ata-budget-night-waste-watchers-e4b1e2ac242260f169b9', 'UA-161808655-1').createForm();
      }
     }, []);
-
-
     socket.on('updatedPrograms', function (data) {
         setAllPrograms(allPrograms.map((item) => {
             if (item.id === data.id) {
@@ -97,7 +94,6 @@ function App() {
     const formatter = new Intl.NumberFormat('en-GB')
 
     const perHouse =   () => {
-
         let payload = totalAmount / perH
         let parse = parseFloat(Math.round(payload * 100) / 100).toFixed(2);
         const div = formatter.format(parse)
@@ -114,22 +110,11 @@ function App() {
     }, [allPrograms])
 
     useEffect(() => {
-        console.log(allPrograms)
-    }, [allPrograms])
-
-    useEffect(() => {
-        console.log(totalAmount)
         perHouse()
         perPerson()
         // setTotal([total])
     }, [totalAmount])
-    useEffect(() => {
-        console.log(totalPerHouse)
-    }, [totalPerHouse])
 
-    useEffect(() => {
-        console.log(totalPerPerson)
-    }, [totalPerPerson])
     return (
         <div style={{display: 'flex', flexDirection: 'column', height: '100vh'}}>
             <header>
@@ -153,19 +138,16 @@ function App() {
                         <Col style={{padding: '2px', maxWidth: '300px'}}>
                             <Row>
                                 <h3>
-                                    Get our budget night summary
+                                    Receive a Reminder on Budget Night
                                 </h3>
                             </Row>
                         </Col>
                         <Col style={{padding: '2px', maxWidth: '300px'}}>
                             <div role="main" id="ata-budget-night-waste-watchers-e4b1e2ac242260f169b9">
-
                             </div>
-
                         </Col>
                     </Container>
                 </div>
-
                 <WasteoMeter
                     setTotal={setTotal}
                     total={total}
@@ -180,7 +162,6 @@ function App() {
                         totalAmount={totalAmount}
                     />
                 </div>
-
                 {/*<div>*/}
 
                 {/*    <Container md={4} className={'containerAlt'}>*/}

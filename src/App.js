@@ -29,6 +29,7 @@ function App() {
         let data = await axios.get('https://budget-real-time.herokuapp.com/program')
         return data
     }
+
     // const perHome = async ()=> {
     //     let data =  axios.get(`https://budget-real-time.herokuapp.com/people/1`)
     //     return data
@@ -128,18 +129,19 @@ function App() {
                 textAlign: 'center',
                 alignItems: 'center',
             }}>
-                <h1 style={{color: 'white', textAlign: 'center'}}>
+                <h1 style={{margin:'10px', color: 'white', textAlign: 'center'}}>
                     WASTE WATCHERS
                 </h1>
-                <p style={{color: 'white'}}>The Australian Taxpayers' Alliance budget night tracker</p>
+                <p style={{ margin:'10px',color: 'white'}}>The Australian Taxpayers' Alliance budget night tracker</p>
                 <div>
                     <Container xs={11} md={10} xl={4} lg={4}
                                style={{display: "flex", padding: '1px 0px', margin: '26px 0px'}}
                                className={'containerAlt'}>
-                        <Col style={{padding: '2px', maxWidth: '300px'}}>
+                        <Col style={{padding: '2px', maxWidth: '398px'}}>
                             <Row>
-                                <h3>
-                                    Receive a Reminder on Budget Night
+                                <h3 style={{margin:'10px'}}>
+                                    Receive a Reminder
+                                on Budget Night
                                 </h3>
                             </Row>
                         </Col>
@@ -218,7 +220,7 @@ function App() {
                         </a>
                     </div>
                     <div style={{padding: '8px'}}>
-                        <a href={'https://twitter.com/AusTaxpayers'} target={'blank'}>
+                        <a href={'https://twitter.com/WasteW_ATA'} target={'blank'}>
                             <img style={{height: '40px'}} src={twitterlog} alt={'tweet'}/>
                         </a>
                     </div>

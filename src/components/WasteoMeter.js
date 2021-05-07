@@ -18,7 +18,7 @@ const WasteoMeter = ({showSpecifics, setShowSpecifics, allPrograms, totalAmount,
         <Container style={{
             padding: '15px 0',
             boxShadow: '-15px 15px lightslategray',
-            maxWidth: '600px',
+            maxWidth: '680px',
             margin: '5px',
             textAlign: 'left',
             backgroundColor: 'white'

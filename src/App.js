@@ -169,7 +169,7 @@ function App() {
                 </div>
                 <div>
 
-                    <Container md={4} className={'containerAlt'} style={{ height: '600px', width: '680px', marginBottom: '20px'}}>
+                    <Container   className={'containerAlt'} style={{ padding: '0px', maxHeight:'600 ',maxWidth: '68 0px', marginBottom: '20px'}}>
                         <div>
                             <h2 style={{ textAlign:'left', paddingTop:'10px', margin: '5px 5px'}}>
                                 <img src={timelineLogo} style={{width:"39px", height:'39px', marginRight:'10px'}} alt="twitter"/>
@@ -185,10 +185,8 @@ function App() {
                         {/*        />*/}
                         {/*    </div>*/}
                         </div>
-
-                        <div className="selfCenter standardWidth">
-                            <a className="twitter-timeline" href="https://twitter.com/WasteW_ATA?ref_src=twsrc%5Etfw">Tweets by
-                                WasteW_ATA</a>
+                        <div className={'timeline'} >
+                            <a  className="twitter-timeline" href="https://twitter.com/AusTaxpayers?ref_src=twsrc%5Etfw">Tweets by AusTaxpayers</a>
 
                         </div>
 
@@ -243,3 +241,5 @@ function App() {
 }
 
 export default App;
+
+// <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>

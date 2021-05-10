@@ -8,9 +8,11 @@ import logo from './assets/logo-ata-blanco.png'
 import fblogo from './assets/fa.jpg'
 import instlogo from './assets/in.jpg'
 import twitterlog from './assets/tw.jpg'
+import timelineLogo from './assets/tw.png'
 import Col from "react-bootstrap/cjs/Col";
 import Row from "react-bootstrap/cjs/Row";
 import axios from 'axios'
+import {TwitterTimelineEmbed} from "react-twitter-embed";
 
 // const CONNECTION_PORT = process.env.PORT || 'localhost:8080/'
 let socket = io('https://budget-real-time.herokuapp.com')
@@ -58,11 +60,11 @@ function App() {
     //         })
     // },[])
 
-    useEffect(() => {
-        if (window.RDStationForms) {
-            new window.RDStationForms('ata-budget-night-waste-watchers-e4b1e2ac242260f169b9', 'UA-161808655-1').createForm();
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (window.RDStationForms) {
+    //         new window.RDStationForms('ata-budget-night-waste-watchers-e4b1e2ac242260f169b9', 'UA-161808655-1').createForm();
+    //     }
+    // }, []);
 
     const amount = () => {
         let data = allPrograms.map((item) => {
@@ -165,27 +167,35 @@ function App() {
                         totalAmount={totalAmount}
                     />
                 </div>
-                {/*<div>*/}
+                <div>
 
-                {/*    <Container md={4} className={'containerAlt'}>*/}
-                {/*        <div className="centerContent">*/}
-                {/*            <h2>*/}
-                {/*                <img src={twet} width="60" alt="twitter"/>*/}
-                {/*                Live Update*/}
-                {/*            </h2>*/}
-                {/*            <div className="selfCenter standardWidth">*/}
-                {/*                <TwitterTimelineEmbed*/}
-                {/*                    sourceType="timeline"*/}
-                {/*                    id="539487832448843776"*/}
-                {/*                    theme="dark"*/}
-                {/*                    options={{height: 600, width: 600}}*/}
-                {/*                />*/}
-                {/*            </div>*/}
-                {/*        </div>*/}
+                    <Container md={4} className={'containerAlt'} style={{ height: '600px', width: '680px', marginBottom: '20px'}}>
+                        <div>
+                            <h2 style={{ textAlign:'left', paddingTop:'10px', margin: '5px 5px'}}>
+                                <img src={timelineLogo} style={{width:"39px", height:'39px', marginRight:'10px'}} alt="twitter"/>
+                              Live Update
+                           </h2>
+                        {/*    <div className="selfCenter standardWidth">*/}
+                        {/*        <TwitterTimelineEmbed*/}
+                        {/*            sourceType="timeline"*/}
+                        {/*            screenName="WasteW_ATA"*/}
+                        {/*            //id="539487832448843776"*/}
+                        {/*            theme="light"*/}
+                        {/*            options={{height: 600, width: 600}}*/}
+                        {/*        />*/}
+                        {/*    </div>*/}
+                        </div>
 
-                {/*    </Container>*/}
+                        <div className="selfCenter standardWidth">
+                            <a className="twitter-timeline" href="https://twitter.com/WasteW_ATA?ref_src=twsrc%5Etfw">Tweets by
+                                WasteW_ATA</a>
 
-                {/*</div>*/}
+                        </div>
+
+                    </Container>
+
+                </div>
+
 
                 <div>
                     <Container className={'buttonContainer'}
@@ -211,17 +221,17 @@ function App() {
                 <div style={{display: 'flex', marginTop: '3em'}}>
                     <div style={{padding: '8px',}}>
                         <a href={'https://www.facebook.com/AusTaxpayers'} role={'button'} target={'blank'}>
-                            <img style={{height: '40px'}} src={fblogo} alt={'tweet'}/>
+                            <img style={{height: '40px'}} src={fblogo} alt={'fb'}/>
                         </a>
                     </div>
                     <div style={{padding: '8px'}}>
                         <a href={'https://www.instagram.com/austaxpayersalliance/'} target={'blank'}>
-                            <img style={{height: '40px'}} src={instlogo} alt={'tweet'}/>
+                            <img style={{height: '40px'}} src={instlogo} alt={'instagram'}/>
                         </a>
                     </div>
                     <div style={{padding: '8px'}}>
-                        <a href={'https://twitter.com/WasteW_ATA'} target={'blank'}>
-                            <img style={{height: '40px'}} src={twitterlog} alt={'tweet'}/>
+                        <a href={'https://twitter.com/AusTaxpayers'} target={'blank'}>
+                            <img style={{height: '40px'}} src={twitterlog} alt={'tweeter'}/>
                         </a>
                     </div>
                 </div>

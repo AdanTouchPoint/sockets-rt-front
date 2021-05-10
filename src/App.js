@@ -133,24 +133,24 @@ function App() {
                     WASTE WATCHERS
                 </h1>
                 <p style={{ margin:'10px',color: 'white'}}>The Australian Taxpayers' Alliance budget night tracker</p>
-                <div>
-                    <Container xs={11} md={10} xl={4} lg={4}
-                               style={{display: "flex", padding: '1px 0px', margin: '26px 0px'}}
-                               className={'containerAlt'}>
-                        <Col style={{padding: '2px', maxWidth: '398px'}}>
-                            <Row>
-                                <h3 style={{margin:'10px'}}>
-                                    Receive a Reminder
-                                on Budget Night
-                                </h3>
-                            </Row>
-                        </Col>
-                        <Col style={{padding: '2px', maxWidth: '300px'}}>
-                            <div role="main" id="ata-budget-night-waste-watchers-e4b1e2ac242260f169b9">
-                            </div>
-                        </Col>
-                    </Container>
-                </div>
+                {/*<div>*/}
+                {/*    <Container xs={11} md={10} xl={4} lg={4}*/}
+                {/*               style={{display: "flex", padding: '1px 0px', margin: '26px 0px'}}*/}
+                {/*               className={'containerAlt'}>*/}
+                {/*        <Col style={{padding: '2px', maxWidth: '398px'}}>*/}
+                {/*            <Row>*/}
+                {/*                <h3 style={{margin:'10px'}}>*/}
+                {/*                    Receive a Reminder*/}
+                {/*                on Budget Night*/}
+                {/*                </h3>*/}
+                {/*            </Row>*/}
+                {/*        </Col>*/}
+                {/*        <Col style={{padding: '2px', maxWidth: '300px'}}>*/}
+                {/*            <div role="main" id="ata-budget-night-waste-watchers-e4b1e2ac242260f169b9">*/}
+                {/*            </div>*/}
+                {/*        </Col>*/}
+                {/*    </Container>*/}
+                {/*</div>*/}
                 <WasteoMeter
                     setTotal={setTotal}
                     total={total}

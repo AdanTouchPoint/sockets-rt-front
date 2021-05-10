@@ -186,7 +186,7 @@ function App() {
                         {/*    </div>*/}
                         </div>
                         <div className={'timeline'} >
-                            <a  className="twitter-timeline" href="https://twitter.com/AusTaxpayers?ref_src=twsrc%5Etfw">Tweets by AusTaxpayers</a>
+                            <a className="twitter-timeline" href="https://twitter.com/WasteW_ATA?ref_src=twsrc%5Etfw">Tweets by WasteW_ATA</a>
 
                         </div>
 
@@ -242,4 +242,4 @@ function App() {
 
 export default App;
 
-// <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
+<script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
